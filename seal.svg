@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<svg  height="500" width="500" stroke="#000" fill="none"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style type="text/css">
+
+    /* Green: #005925 */
+
+    .circle {
+      stroke: silver;
+      stroke-width: 4;
+      fill: transparent;
+    }
+
+    .triangle {
+      stroke: black;
+      stroke-width: 2;
+      fill: #221a99;
+    }
+
+    .spiral {
+      fill: transparent;
+      stroke: #fed148;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+  </style>
+
+  <defs>
+    <!-- radius is leg / (2*sin(72deg)) -->
+    <circle r="57" class="circle" id="circle-of-steel" />
+    <!-- Thisis a unit-spiral. Scale it to get other sizes. -->
+    <path id="fibonacci-spiral" class="spiral" d="
+    M 0 0
+    a 1 1 0 0 0 -1 1
+    a 2 2 0 0 0 2 2
+    a 3 3 0 0 0 3 -3
+    a 5 5 0 0 0 -5 -5
+    a 8 8 0 0 0 -8 8
+    a 13 13 0 0 0 13 13
+  " />
+    <!-- points are: 0,height : height/tan(72deg),0 : 2*height/tan(72deg),height -->
+    <polygon id="golden-triangle" class="triangle" points="0,100 32.49,0, 64.98,100"/>
+
+    <g id="seal">
+      <!-- Position is, um, whatever. -->
+      <use xlink:href="#golden-triangle" transform="translate(23, 0)" />
+
+      <!-- Translate X: height/tan(72deg) + #triangle translate; Translate Y: Experimental. -->
+      <use xlink:href="#circle-of-steel" transform="translate(56, 55)" />
+
+      <use xlink:href="#fibonacci-spiral" transform="translate(61, 62) scale(2.8)" />
+    </g>
+
+  </defs>
+
+
+  <use xlink:href="#seal" transform="translate(100, 100) scale(3)" />
+
+
+</svg>
